@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+
+<style>
+    #backbutton {
+        line-height: 40px;
+        width: 60px;
+    }
+    
+    .mainimage {
+        height: 100vh;
+        z-index: 0;
+    }
+    
+    .panel {
+        font-size: 24px;
+        border: 30px black;
+        text-align: center;
+        background-image: url("../static/0cgi1.jpg");
+        background-position-x: -300px;
+        background-repeat: no-repeat;
+        background-position-y: 50px;
+        -o-background-size: cover;
+        background-size: cover;
+    }
+    
+    .carousel-caption {
+        border: 30px black;
+        z-index: 1;
+        top: 35vh;
+        left: 10vw;
+        bottom: 350px;
+        font-size: 24px;
+    }
+    
+    body {}
+    
+    .resultbox {
+        border: 8px gray groove;
+        top: 30px;
+        bottom: 30px;
+        padding-left: 100px;
+        padding-right: 100px;
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+    
+    .baike {
+        border: 1px;
+        border-top: solid gray;
+        overflow-y: scroll;
+        height: 200px;
+        white-space: normal;
+        word-break: break-all;
+        font-size: medium;
+    }
+</style>
+
+<head>
+    <script type='text/javascript' src='//www.midijs.net/lib/midi.js'></script>
+    <script src="https://kit.fontawesome.com/268bd3828c.js"></script>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <nav class="navbar navbar-light" style="background-color:rgb(182,193,193);">
+        <span class="navbar-brand mb-0 h1">古诗音乐生成器</span>
+        <!--The position NEED TO BE CHANGED-->
+        <button onclick="javascript:history.back();" id="backbutton"> <i class="far fa-caret-square-left"></i></button>
+    </nav>
+</head>
+
+<body>
+    {% if result!=[] %} {% for i in range(count) %}
+    <div class="panel panel-default">
+        <div class="resultbox">
+            <pre>
+<audio style="color:aqua"controls="controls" loop="loop" preload="metadata">
+
+                    <source src={{ musics[i] }} type="audio/wav">
+
+                    您的浏览器暂不自持播放。
+                </audio>
+                <!--<a href="#" onclick="MIDIjs.play('{{ musics[i] }}');">Play</a>
+                 <a href="#" onClick="MIDIjs.stop();">Stop</a>-->
+            </pre>
+            <h1 id="title" style="color:grey;">{{ result[i].name }}</h1>
+            <p id="author" style="color:grey;font-size:small; margin:50px"> 作者简介：{{ result[i] .author}}</p>
+            {% for c in content[i] %}
+            <pre id="textline" style="color:grey;font-size: larger">{{ c }}</pre> {% endfor %}
+            <div class="baike">
+                <h4>百科</h4>
+                <h5>关于</h5>
+                <p>{{ result[i].about }}</p>
+                <h5>翻译</h5>
+                <p>{{ result[i].fanyi }}</p>
+                <h5>赏析</h5>
+                <p>{{ result[i].shangxi }}</p>
+                <!--添加链接-->
+            </div>
+        </div>
+    </div>
+    {% endfor %} {% else %}
+    <h1 style="text-align: center">没有匹配的诗</h1>
+    {% endif %}
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <!---<img class="mainimage" src="http://tpl-ce6f41e.pic22.websiteonline.cn/upload/0cgi.jpg" class="d-block w-100" alt="...">-->
+
+</body>
+
+<meta charset="utf-8">
+
+</html>

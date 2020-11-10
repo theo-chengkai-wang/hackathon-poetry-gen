@@ -1,0 +1,9 @@
+.idea
+__pycache__
+/script/__pycache__
+/script/output.mid
+/static/midi/*
+/static/WAV/*
+/script/midi_proc_backup.py
+/venv
+.vscode
